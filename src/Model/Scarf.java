@@ -1,14 +1,13 @@
 package Model;
 
-public class Scarf extends Clothes{
-    private String designs;
-    private String fabric;
+import java.time.LocalDate;
 
-    public Scarf() {
-    }
+public class Scarf extends Clothes {
+    private final String designs;
+    private final String fabric;
 
-    public Scarf(String code, String name, String color, String brand, double price, String designs, String fabric) {
-        super(code, name, color, brand, price);
+    public Scarf(String code, String name, String color, String brand, double price, LocalDate releaseDate, String designs, String fabric) {
+        super(code, name, color, brand, price, releaseDate);
         this.designs = designs;
         this.fabric = fabric;
     }

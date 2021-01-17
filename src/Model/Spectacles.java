@@ -1,16 +1,14 @@
 package Model;
 
-public class Spectacles extends Clothes{
-    private String lens;
+import java.time.LocalDate;
 
-    public Spectacles() {
-    }
+public class Spectacles extends Clothes {
+    private final String lens;
 
-    public Spectacles(String code, String name, String color, String brand, double price, String lens) {
-        super(code, name, color, brand, price);
+    public Spectacles(String code, String name, String color, String brand, double price, LocalDate releaseDate, String lens) {
+        super(code, name, color, brand, price, releaseDate);
         this.lens = lens;
     }
-
     @Override
     public String toString() {
         return "Spectacles { " +

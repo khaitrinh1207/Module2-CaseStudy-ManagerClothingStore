@@ -8,16 +8,20 @@ public abstract class Clothes{
     private String color;
     private String brand;
     private double price;
+    private LocalDate releaseDate;
+
+
 
     public Clothes() {
     }
 
-    public Clothes(String code, String name, String color, String brand, double price) {
+    public Clothes(String code, String name, String color, String brand, double price,LocalDate releaseDate) {
         this.code = code;
         this.name = name;
         this.color = color;
         this.brand = brand;
         this.price = price;
+        this.releaseDate = releaseDate;
     }
 
     public String getCode() {
@@ -60,6 +64,14 @@ public abstract class Clothes{
         this.price = price;
     }
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 
 
 
@@ -69,6 +81,7 @@ public abstract class Clothes{
                 "] [name:" + name+
                 "] [color:" + color +
                 "] [brand:" + brand +
-                "] [price:" + price;
+                "] [price:" + price+
+                "] [release date:"+releaseDate;
     }
 }
