@@ -12,6 +12,7 @@ public class MainClothes {
 
     public static void main(String[] args) {
         ManagerClothes manager = new ManagerClothes();
+        manager.readFile();
         while (true) {
             System.out.println("--------------CỬA HÀNG THỜI TRANG--------------");
             System.out.println("Nhập 1: Hiển thị danh sách hiện có");
@@ -43,7 +44,7 @@ public class MainClothes {
                     manager.newClothes();
                     break;
                 case 6:
-
+                    manager.discount();
                     break;
                 case 0: {
                     return;
@@ -63,6 +64,7 @@ public class MainClothes {
         if (code.matches(CODE_REGEX)) {
             String type = code.substring(0, 2);
             manager.add(infomation(type, code));
+            manager.writeFile();
         } else {
             System.err.println("Cú pháp không hợp lệ !!!");
         }
@@ -93,7 +95,7 @@ public class MainClothes {
             case "KH":
                 System.out.print("Nhập kiểu dáng:");
                 String design = sc.nextLine();
-                System.out.print("Nhập chất liệu");
+                System.out.print("Nhập chất liệu:");
                 String fabric = sc.nextLine();
                 return new Scarf(code, name, color, brand, price, releaseDate, design, fabric);
             default:
