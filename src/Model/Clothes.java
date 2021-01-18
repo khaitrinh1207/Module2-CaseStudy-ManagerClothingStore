@@ -78,11 +78,11 @@ public abstract class Clothes implements Serializable {
 
     @Override
     public String toString() {
-        return "[code:" + code+
-                "] [name:" + name+
-                "] [color:" + color +
-                "] [brand:" + brand +
-                "] [price:" + price+
-                "] [release date:"+releaseDate;
+        return "[Code:" + code+
+                "] [Name:" + name+
+                "] [Color:" + color +
+                "] [Brand:" + brand +
+                "] [Price:" + price+
+                " $] [Release date:"+releaseDate;
     }
 }

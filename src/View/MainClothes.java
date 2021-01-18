@@ -19,8 +19,9 @@ public class MainClothes {
             System.out.println("Nhập 2: Thêm trang phục");
             System.out.println("Nhập 3: Xóa trang phục");
             System.out.println("Nhập 4: Sắp xếp theo giá");
-            System.out.println("Nhập 5: Hàng mới về");
-            System.out.println("Nhập 6: >>> [SALE] <<<");
+            System.out.println("Nhập 5: Tìm kiếm sản phẩm theo tên");
+            System.out.println("Nhập 6: Hàng mới về");
+            System.out.println("Nhập 7: >>> [SALE] <<<");
             System.out.println("Nhập 0: Thoát");
             System.out.println("----------------------------------------------");
             int change = Integer.parseInt(sc.nextLine());
@@ -41,9 +42,14 @@ public class MainClothes {
                     manager.sortLowToUp();
                     break;
                 case 5:
-                    manager.newClothes();
+                    System.out.println("Nhập sản phẩm cần tìm:");
+                    String name = sc.nextLine();
+                    manager.findNameProduct(name);
                     break;
                 case 6:
+                    manager.newClothes();
+                    break;
+                case 7:
                     manager.discount();
                     break;
                 case 0: {
@@ -60,7 +66,7 @@ public class MainClothes {
     private static void addProduct(ManagerClothes manager) {
         System.out.println("Nhập mã sản phẩm");
         String code = sc.nextLine();
-        String CODE_REGEX = "^[AO|QN|KH|KI]{2}-[\\d]+$";
+        String CODE_REGEX = "^(AO|QN|KH|KI)-[\\d]+$";
         if (code.matches(CODE_REGEX)) {
             String type = code.substring(0, 2);
             manager.add(infomation(type, code));

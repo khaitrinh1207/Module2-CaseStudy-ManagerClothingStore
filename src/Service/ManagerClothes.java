@@ -82,15 +82,28 @@ public class ManagerClothes {
         }
     }
 
+    public void findNameProduct(String name) {
+        Clothes findClothes = null;
+        for (Clothes clothes : clothesList) {
+            if (name.equalsIgnoreCase(clothes.getName())) {
+                findClothes = clothes;
+                System.out.println(findClothes);
+            }
+        }
+        if(findClothes == null) {
+            System.err.println("Không tìm thấy sản phẩm !!!");
+        }
+    }
+
     public void show() {
-        if (clothesList.size() == 0)
+        System.out.println("[Số lượng sản phẩm: "+clothesList.size()+"]");
+        if (clothesList.size() == 0) {
             System.err.println("Danh sách rỗng !!!");
+        }
         else {
             for (Clothes clothes : clothesList) {
                 System.out.println(clothes);
             }
-            System.out.print("Số lượng thời trang hiện có: ");
-            System.out.println(clothesList.size());
         }
     }
 

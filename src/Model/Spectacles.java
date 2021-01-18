@@ -13,7 +13,7 @@ public class Spectacles extends Clothes {
     public String toString() {
         return "Spectacles { " +
                 super.toString()+
-                "][lens:" + lens+
+                "][Lens:" + lens+
                "] }";
     }
 }

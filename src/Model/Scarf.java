@@ -16,8 +16,8 @@ public class Scarf extends Clothes {
     public String toString() {
         return "Scarf { " +
                 super.toString()+
-                "][designs:" + designs +
-                "][fabric:" + fabric +
+                "][Designs:" + designs +
+                "][Fabric:" + fabric +
                 "] }";
     }
 }
