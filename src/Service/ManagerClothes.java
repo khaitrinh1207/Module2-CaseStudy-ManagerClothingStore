@@ -1,19 +1,18 @@
 package Service;
 
 import Model.Clothes;
+import Stoge.ReadAndWrite;
 
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerClothes {
+    public static final double DISCOUNT_50 = 0.5;
+    public static final double DISCOUNT_20 = 0.8;
     List<Clothes> clothesList;
-    public static final String FILE_NAME = "dataClothes.dat";
 
     public ManagerClothes() {
         clothesList = new ArrayList<>();
@@ -21,6 +20,7 @@ public class ManagerClothes {
 
     public void add(Clothes clothes) {
         clothesList.add(clothes);
+        writeFile();
     }
 
     public void remove(int index) {
@@ -67,15 +67,15 @@ public class ManagerClothes {
         }
     }
 
-    public void discount() {
+    public void discount(int month) {
         for (Clothes clothes : clothesList) {
-            if (clothes.getReleaseDate().isBefore(LocalDate.now().minusMonths(6)) || clothes.getReleaseDate().isEqual(LocalDate.now().minusMonths(6))) {
-                clothes.setPrice(clothes.getPrice() * 0.5);
+            if (clothes.getReleaseDate().isBefore(LocalDate.now().minusMonths(month)) || clothes.getReleaseDate().isEqual(LocalDate.now().minusMonths(month))) {
+                clothes.setPrice(clothes.getPrice() * DISCOUNT_50);
                 System.out.print("[ SALE 50% ]\t");
                 System.out.println(clothes);
             }
             if (LocalDate.now().isEqual(LocalDate.of(2021, 1, 20)) || LocalDate.now().isAfter(LocalDate.of(2021, 1, 15))) {
-                clothes.setPrice(clothes.getPrice() * 0.8);
+                clothes.setPrice(clothes.getPrice() * DISCOUNT_20);
                 System.out.print("[ SALE 20% ]\t");
                 System.out.println(clothes);
             }
@@ -107,26 +107,12 @@ public class ManagerClothes {
         }
     }
 
-    public void writeFile() {
-        try {
-            FileOutputStream fos = new FileOutputStream(FILE_NAME);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(clothesList);
-            oos.close();
-            fos.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    public void writeFile(){
+        ReadAndWrite.write(clothesList);
     }
 
-    public void readFile() {
-        try {
-            FileInputStream fis = new FileInputStream(FILE_NAME);
-            ObjectInputStream oos = new ObjectInputStream(fis);
-            clothesList = (List<Clothes>) oos.readObject();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    public void readFile(){
+        clothesList =(List<Clothes>) ReadAndWrite.read();
     }
 
 }

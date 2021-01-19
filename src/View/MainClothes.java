@@ -24,41 +24,49 @@ public class MainClothes {
             System.out.println("Nhập 7: >>> [SALE] <<<");
             System.out.println("Nhập 0: Thoát");
             System.out.println("----------------------------------------------");
-            int change = Integer.parseInt(sc.nextLine());
-            switch (change) {
-                case 1:
-                    manager.show();
-                    break;
-                case 2:
-                    addProduct(manager);
-                    break;
-                case 3:
-                    System.out.print("Nhập vị trí muốn xóa:");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    manager.remove(index);
-                    break;
-                case 4:
-                    manager.sortLowToUp();
-                    break;
-                case 5:
-                    System.out.println("Nhập sản phẩm cần tìm:");
-                    String name = sc.nextLine();
-                    manager.findNameProduct(name);
-                    break;
-                case 6:
-                    manager.newClothes();
-                    break;
-                case 7:
-                    manager.discount();
-                    break;
-                case 0: {
-                    return;
+            try {
+                int change = Integer.parseInt(sc.nextLine());
+                switch (change) {
+                    case 1:
+                        try {
+                            manager.show();
+                        } catch (NullPointerException e) {
+                            System.err.println("Dữ liệu trống !!!");
+                        }
+                        break;
+                    case 2:
+                        addProduct(manager);
+                        break;
+                    case 3:
+                        System.out.print("Nhập vị trí muốn xóa:");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        manager.remove(index);
+                        break;
+                    case 4:
+                        manager.sortLowToUp();
+                        break;
+                    case 5:
+                        System.out.println("Nhập sản phẩm cần tìm:");
+                        String name = sc.nextLine();
+                        manager.findNameProduct(name);
+                        break;
+                    case 6:
+                        manager.newClothes();
+                        break;
+                    case 7:
+                        manager.discount(6);
+                        break;
+                    case 0: {
+                        return;
+                    }
+                    default:
+                        System.err.println("Sai cú pháp !");
+
+
                 }
-                default:
-                    System.err.println("Sai cú pháp !");
-
-
+            } catch (NumberFormatException e) {
+                System.err.println("YÊU CẦU NHẬP ĐÚNG LỰA CHỌN");
             }
         }
     }
@@ -70,7 +78,6 @@ public class MainClothes {
         if (code.matches(CODE_REGEX)) {
             String type = code.substring(0, 2);
             manager.add(infomation(type, code));
-            manager.writeFile();
         } else {
             System.err.println("Cú pháp không hợp lệ !!!");
         }
