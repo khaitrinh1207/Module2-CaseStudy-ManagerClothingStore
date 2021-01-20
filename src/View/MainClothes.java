@@ -14,7 +14,7 @@ public class MainClothes {
         ManagerClothes manager = new ManagerClothes();
         manager.readFile();
         while (true) {
-            System.out.println("--------------CỬA HÀNG THỜI TRANG--------------");
+            System.out.println("\n--------------CỬA HÀNG THỜI TRANG--------------");
             System.out.println("Nhập 1: Hiển thị danh sách hiện có");
             System.out.println("Nhập 2: Thêm trang phục");
             System.out.println("Nhập 3: Xóa trang phục");
@@ -24,6 +24,7 @@ public class MainClothes {
             System.out.println("Nhập 7: >>> [SALE] <<<");
             System.out.println("Nhập 0: Thoát");
             System.out.println("----------------------------------------------");
+            System.out.print("[Lựa chọn]:\t");
             try {
                 int change = Integer.parseInt(sc.nextLine());
                 switch (change) {
@@ -38,7 +39,8 @@ public class MainClothes {
                         addProduct(manager);
                         break;
                     case 3:
-                        System.out.print("Nhập vị trí muốn xóa:");
+                        manager.show();
+                        System.out.print("Nhập vị trí muốn xóa (1-n):");
                         int index = sc.nextInt();
                         sc.nextLine();
                         manager.remove(index);
@@ -47,14 +49,16 @@ public class MainClothes {
                         manager.sortLowToUp();
                         break;
                     case 5:
-                        System.out.println("Nhập sản phẩm cần tìm:");
+                        System.out.print("\nNhập sản phẩm cần tìm: ");
                         String name = sc.nextLine();
                         manager.findNameProduct(name);
                         break;
                     case 6:
+                        System.out.print("\n");
                         manager.newClothes();
                         break;
                     case 7:
+                        System.out.print("\n");
                         manager.discount(6);
                         break;
                     case 0: {

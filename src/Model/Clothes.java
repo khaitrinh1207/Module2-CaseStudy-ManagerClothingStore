@@ -3,7 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Clothes implements Serializable {
+public class Clothes implements Serializable {
     private String code;
     private String name;
     private String color;

@@ -2,9 +2,10 @@ package Stoge;
 
 import java.io.*;
 
-public class ReadAndWrite{
+public class ReadAndWrite {
     public static final String FILE_NAME = "dataClothes.dat";
-    public static void write(Object obj){
+
+    public static void write(Object obj) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(FILE_NAME);
             ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
@@ -18,15 +19,15 @@ public class ReadAndWrite{
         }
     }
 
-    public static Object read(){
+    public static Object read() {
         Object obj = null;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
             obj = ois.readObject();
+            ois.close();
         } catch (FileNotFoundException e) {
             System.err.println("Dữ liệu rỗng !!!");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return obj;
